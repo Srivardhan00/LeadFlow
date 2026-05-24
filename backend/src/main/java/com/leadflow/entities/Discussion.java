@@ -1,10 +1,7 @@
 package com.leadflow.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -14,6 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Discussion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +23,7 @@ public class Discussion {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @Column(nullable = false)
-    private Long leadId;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Lead lead;
 }

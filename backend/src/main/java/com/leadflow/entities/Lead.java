@@ -2,20 +2,19 @@ package com.leadflow.entities;
 
 import jakarta.persistence.*;
 import com.leadflow.utils.Status;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Lead {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,4 +36,7 @@ public class Lead {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "lead")
+    private List<Discussion> discussionList;
 }
