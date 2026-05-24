@@ -23,7 +23,7 @@ public class LeadService {
     private final LeadRepository leadRepository;
     private final DiscussionRepository discussionRepository;
 
-    public List<LeadResponseDTO> fetchAll() {
+    public List<LeadResponseDTO> getAllLeads() {
         return leadRepository.findAll().stream()
                 .map(this::convertToResponseDTO)
                 .collect(Collectors.toList());
@@ -90,16 +90,6 @@ public class LeadService {
 
         // Return updated lead details with the reverse-chronological discussions
         return fetchDetails(leadId);
-    }
-
-    @Transactional
-    public LeadResponseDTO updateStatus(Long leadId, Status status) {
-        Lead lead = leadRepository.findById(leadId)
-                .orElseThrow(() -> new ResourceNotFoundException("Lead not found with ID: " + leadId));
-        
-        lead.setStatus(status);
-        Lead saved = leadRepository.save(lead);
-        return convertToResponseDTO(saved);
     }
 
     private LeadResponseDTO convertToResponseDTO(Lead lead) {
