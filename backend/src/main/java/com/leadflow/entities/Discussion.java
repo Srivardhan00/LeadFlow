@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "discussions")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -24,6 +25,6 @@ public class Discussion {
     private LocalDateTime createdAt;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "lead_id", nullable = false)
     private Lead lead;
 }
