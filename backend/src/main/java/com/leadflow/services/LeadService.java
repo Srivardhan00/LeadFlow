@@ -8,7 +8,6 @@ import com.leadflow.dtos.*;
 import com.leadflow.exceptions.ResourceNotFoundException;
 import com.leadflow.utils.Status;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
